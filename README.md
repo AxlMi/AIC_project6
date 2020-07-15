@@ -6,4 +6,3 @@
   - Save him on S3 bucket, all day in new folder with the corresponding date
   - Possibility to restore at the desirated date 
  
- if you have
