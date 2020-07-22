@@ -15,8 +15,8 @@ class Database:
     
 
 def main():
-    dbase = Database("root", '2ksable$')
-    dbase.shdb
+    dbase = Database("root", '2Ksable$')
+    dbase.shdb()
     
 if __name__ == "__main__":
     main()
