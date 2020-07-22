@@ -11,7 +11,7 @@ class Database:
     def shdb(self):
         db = self.engine.execute('SHOW DATABASES')
         available_tables = db.fetchall()
-        print(available_table)
+        print(available_tables)
     
 
 def main():
