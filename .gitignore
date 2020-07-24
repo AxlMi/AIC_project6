@@ -1,3 +1,7 @@
 # created by virtualenv automatically
 var.py
-__pycache__
+__pycache__/
+Scripts/
+bin/
+lib/python3.7/site-packages
+lib/site-paclages
