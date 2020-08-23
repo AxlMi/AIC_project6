@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 # coding: utf-8
 import mysql.connector
-import time
-import datetime
 import os
 import pipes
+import var
+import socket
 from sqlalchemy import create_engine
 
 
@@ -19,27 +19,36 @@ class Database:
         corresponding to my server"""
         remdb = ['information_schema', 'mysql', 'performance_schema','sys'] # DB that i do not want to back up
         db = self.engine.execute('SHOW DATABASES').fetchall()
-        self.row = [item[0] for item in db]
+        var.db_name = [item[0] for item in db]
         for rem in remdb: # remove DB no needed
-            self.row.remove(rem)
+            var.db_name.remove(rem)
+        print(var.db_name)
 
     def create_dump(self, backup_path):
-        date_backup = time.strftime('%Y%m%d')
-        for db_name in self.row:
-            backup_day = backup_path + '/' + db_name
+        """ this method will create the path to the dump,
+        then she will create the dump ,
+        and she will make an archive with gzip"""
+        for db_name in var.db_name:
+            new_backup_path = backup_path + '/' + db_name # path on my system for save before send to s3 
+            var.path_list_s3.append('backup' + '/' + socket.gethostname() + '/' + db_name) # path to save on s3
             try:
-                os.stat(backup_day)
+                os.stat(new_backup_path)
             except FileNotFoundError:
-                os.system("mkdir -p " + backup_day)
-            dump = "mysqldump -h localhost" + " -u " + self.user + " -p" + self.password + " " + db_name + " > " + pipes.quote(backup_day) + "/" + db_name + date_backup + ".sql"
+                os.system("mkdir -p " + new_backup_path)
+            dump = "mysqldump -h localhost" + " -u " + self.user + " -p" + self.password + " " + db_name + " > " + pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql"
             os.system(dump)
-            zip = "gzip " + pipes.quote(backup_day) + "/" + db_name + date_backup + ".sql"
+            zip = "gzip " + pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql"
             os.system(zip)
+            
 
 def main():
     dbase = Database("root", '2Ksable$')
     dbase.show_database()
     dbase.create_dump('/home/backup')
+    sqlaws.create_fodler('projet6backup', var.path_list)
+
+
+    print(var.path_list)
     
 if __name__ == "__main__":
     main()
