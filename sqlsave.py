@@ -5,6 +5,8 @@ import os
 import pipes
 import var
 import socket
+import secure
+import confidential
 from sqlalchemy import create_engine
 
 
@@ -37,6 +39,7 @@ class Database:
                 os.system("mkdir -p " + new_backup_path)
             dump = "mysqldump -h localhost" + " -u " + self.user + " -p" + self.password + " " + db_name + " > " + pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql"
             os.system(dump)
+            secure.encrypt(pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql", confidential.key_encryption)
             zip = "gzip " + pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql"
             os.system(zip)
             
