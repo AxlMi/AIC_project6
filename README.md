@@ -25,6 +25,10 @@
  
  You need to install the requirements.txt : pip freeze > requirements.txt
  
+ ## VARIABLE : 
+ 
+ you can modify them in the file var.py , you need to indicate your bucket_name
+ 
  ## starting the script :
  
  Now you can launch this script with : python3 main.py
