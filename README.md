@@ -10,9 +10,9 @@
  
  ## FOR USE u need :
  
-  - Create file confidential.py with this variable : 
-                                                      - aws_key = " enter ur AWS KEY, you can found him in your AWS Account"
-                                                      - aws_secret = " enter ur key secret , you can found him in your AWS Account"
+ # - Create file confidential.py with this variable : 
+ - aws_key = " enter ur AWS KEY, you can found him in your AWS Account"
+ - aws_secret = " enter ur key secret , you can found him in your AWS Account"
                                                       - sql_user = "enter ur account for use SQL"
                                                       - sql_password = "enter ur password"
                                                       - smtp_server = " indicate your smtp server"
