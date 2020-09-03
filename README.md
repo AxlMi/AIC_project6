@@ -10,16 +10,23 @@
  
  ## FOR USE u need :
  
- # - Create file confidential.py with this variable : 
+ ### - Create file confidential.py with this variable : 
  - aws_key = " enter ur AWS KEY, you can found him in your AWS Account"
  - aws_secret = " enter ur key secret , you can found him in your AWS Account"
-                                                      - sql_user = "enter ur account for use SQL"
-                                                      - sql_password = "enter ur password"
-                                                      - smtp_server = " indicate your smtp server"
-                                                      - smtp_port = "port of your smtp server"
-                                                      - user_smtp = " your mail address"
-                                                      - password_smtp " your password address"
-                                                      - fromaddr = " Systeme < your mail adress> "
-                                                      - toaddrs = " destination mail"
-                                                      - key_encryption = " your key AES"
-                                                      
+ - sql_user = "enter ur account for use SQL"
+ - sql_password = "enter ur password"
+ - smtp_server = " indicate your smtp server"
+ - smtp_port = "port of your smtp server"
+ - user_smtp = " your mail address"
+ - password_smtp " your password address"
+ - fromaddr = " Systeme < your mail adress> "
+ - toaddrs = " destination mail"
+ - key_encryption = " your key AES"
+ 
+ You need to install the requirements.txt : pip freeze > requirements.txt
+ 
+ ## starting the script :
+ 
+ Now you can launch this script with : python3 main.py
+
+
