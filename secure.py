@@ -23,4 +23,4 @@ def decrypt(filename, key):
 
 
 #encrypt("test.sql", confidential.key_encryption)
-#decrypt("a", confidential.key_encryption)
+#decrypt("test", confidential.key_encryption)
