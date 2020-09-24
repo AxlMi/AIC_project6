@@ -63,6 +63,8 @@ def export_dump():
     
     name_restore = name_bdd+year_bdd+month_bdd+day_bdd+".sql.gz"
     path = "backup/"+name_server+"/"+name_bdd+"/"+name_restore
+    print(name_restore)
+    print(path)
     try:
         s3.download_file("projet6backup", path, name_restore)
         os.system("gzip -d "+name_restore)

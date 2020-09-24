@@ -71,3 +71,11 @@ If u want to recoverer DB on a date : use python3 sqlaws.py
 3) Indicate the year of recovery in this format : 2020 
 4) Indicate the month of recovery in this format : 01 for january or 12 for december
 5) Indicate the day of recovery in this format : from 01 to 31
+
+## Conclusion 
+
+if you encounter any errors or difficulties,please do not hesitate to contact me.
+
+you can also suggest me your areas for improvement by MP or pull request
+
+Thanks for the reading

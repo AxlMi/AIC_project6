@@ -2,11 +2,11 @@
 # coding: utf-8
 
 
-aws_key = ""
-aws_secret = ""
+aws_key = ''
+aws_secret = ''
 
-sql_user = ""
-sql_password = ""
+sql_user = ''
+sql_password = ''
 
 smtp_server = ""
 
