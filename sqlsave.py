@@ -18,13 +18,12 @@ class Database:
     
     def show_database(self):
         """ This method will allow to create a list with the databases
-        corresponding to my server"""
+        corresponding to my server, add all database on var.db_name"""
         remdb = ['information_schema', 'mysql', 'performance_schema','sys'] # DB that i do not want to back up
         db = self.engine.execute('SHOW DATABASES').fetchall()
         var.db_name = [item[0] for item in db]
         for rem in remdb: # remove DB no needed
             var.db_name.remove(rem)
-        print(var.db_name)
 
     def create_dump(self, backup_path):
         """ this method will create the path to the dump,
@@ -39,10 +38,12 @@ class Database:
                 os.system("mkdir -p " + new_backup_path)
             dump = "mysqldump -h localhost" + " -u " + self.user + " -p" + self.password + " " + db_name + " > " + pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql"
             os.system(dump)
+            os.system("clear")
             secure.encrypt(pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql", confidential.key_encryption)
             zip = "gzip " + pipes.quote(new_backup_path) + "/" + db_name + var.today_date + ".sql"
             os.system(zip)
             
+        
 
 def main():
     dbase = Database("root", '2Ksable$')

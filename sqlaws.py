@@ -14,18 +14,20 @@ s3 = boto3.client('s3',
 
 
 def create_folder(bucket_name, path):
+    """ this function will create the corresponding structure on s3 """
     for x in path:
-        print(x)
         s3.put_object(Bucket=bucket_name, Key=(x+'/'))
 
 
 def import_dump():
+    """ send the dump on the corresponding structure"""
     for db in var.db_name:
         path_host = var.path_dump + "/" + db + '/' + db+var.today_date + '.sql' + '.gz'
         path_s3 = 'backup' + '/' + socket.gethostname() + '/' + db + '/' + db+var.today_date + '.sql' + '.gz' # path to save on s3
         s3.upload_file(path_host, var.bucket_name, path_s3)
 
 def export_dump():
+    """ use him for recover the file on S3 """
     name_server = input("Quel est le nom du serveur sur lequel est la base de donnée ? ")
     name_bdd = input("Quel est le nom de la base de donnée ? ")
     date_ok = False
