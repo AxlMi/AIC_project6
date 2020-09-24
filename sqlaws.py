@@ -28,16 +28,48 @@ def import_dump():
 def export_dump():
     name_server = input("Quel est le nom du serveur sur lequel est la base de donnée ? ")
     name_bdd = input("Quel est le nom de la base de donnée ? ")
-    year_bdd = input("A quelle annee souhaitez vous faire la restauration ? ")
-    month_bdd = input("A quel mois souhaitez vous faire la restauration ? ")
-    day_bdd = input("A quel jour souhaitez vous faire la restauration ? ")
+    date_ok = False
+    while not date_ok:
+        try:
+            year_bdd = int(input("A quelle annee souhaitez vous faire la restauration ? "))
+            if year_bdd <= 2000 or year_bdd > 2100:
+                print("Entrez une année correcte")
+            else:
+                month_bdd = int(input("A quel mois souhaitez vous faire la restauration ? "))
+                if month_bdd > 12:
+                    print("Merci d'indiquez un mois compris entre 01 et 12")
+                else:
+                    day_bdd = int(input("A quel jour souhaitez vous faire la restauration ? "))
+                    if day_bdd > 0 and day_bdd < 31:
+                        date_ok = True
+                    else:
+                        print("merci d'indiquez un jour compris entre 1 et 31")
+        except:
+            print("Merci d'indiquer une date correcte")
+
+    if month_bdd < 10:
+        month_bdd = "0"+str(+month_bdd)
+    else:
+        month_bdd = str(month_bdd)
+
+    if day_bdd < 10:
+        day_bdd = "0"+str(+day_bdd)
+    else:
+        day_bdd = str(day_bdd)
+
+    year_bdd = str(year_bdd)
+    
     name_restore = name_bdd+year_bdd+month_bdd+day_bdd+".sql.gz"
     path = "backup/"+name_server+"/"+name_bdd+"/"+name_restore
-    s3.download_file("projet6backup", path, name_restore)
-    os.system("gzip -d "+name_restore)
-    secure.decrypt(name_bdd+year_bdd+month_bdd+day_bdd+".sql", confidential.key_encryption)
+    try:
+        s3.download_file("projet6backup", path, name_restore)
+        os.system("gzip -d "+name_restore)
+        secure.decrypt(name_bdd+year_bdd+month_bdd+day_bdd+".sql", confidential.key_encryption)
+    except Exception as e:
+        print(e, "êtes vous sur que le fichier existe ?")
 
 def main():
     export_dump()
     
-main()
+if __name__ == "__main__":
+    main()

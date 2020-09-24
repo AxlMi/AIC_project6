@@ -11,6 +11,24 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import time
 import socket
+from crontab import CronTab
+
+cron = CronTab(user="root")
+
+crontab = []
+
+line_cron = "0 */24 * * * cd /home/axel/projet6/AIC_project6 && /usr/bin/python3 main.py >> /home/cron3.log 2>&1"
+
+for line in cron.lines:
+    print(line)
+    crontab.append(str(line))
+
+if line_cron in crontab:
+    pass
+else:
+    job = cron.new(command="cd /home/axel/projet6/AIC_project6 && /usr/bin/python3 main.py >> /home/cron3.log 2>&1")
+    job.every(24).hours()
+    cron.write()
 
 msg = MIMEMultipart()
 
