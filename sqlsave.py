@@ -46,13 +46,7 @@ class Database:
         
 
 def main():
-    dbase = Database("root", '2Ksable$')
-    dbase.show_database()
-    dbase.create_dump('/home/backup')
-    sqlaws.create_fodler('projet6backup', var.path_list)
-
-
-    print(var.path_list)
+   pass
     
 if __name__ == "__main__":
     main()
