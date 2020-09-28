@@ -21,13 +21,13 @@ Use git clone https://github.com/AxlMi/AIC_project6
 
 ## create your virtual environment :
 
-Install virtualenv : pip install virtualenv,
+Install virtualenv : pip3 install virtualenv,
 create your virtual environment : virtualenv -p python3 "name of your virtual environment"
 active your virtual environment : source "name of yoour virtual environement"/bin/activate
 
 ## install the necessary modules :
 
-you need to install, use : pip freeze -r requirements.txt
+you need to install, use : pip install -r requirements.txt
 
  ## Prerequisite :
  
