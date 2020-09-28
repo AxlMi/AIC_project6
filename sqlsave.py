@@ -23,7 +23,10 @@ class Database:
         db = self.engine.execute('SHOW DATABASES').fetchall()
         var.db_name = [item[0] for item in db]
         for rem in remdb: # remove DB no needed
-            var.db_name.remove(rem)
+            try: 
+                var.db_name.remove(rem)
+            except:
+                pass
 
     def create_dump(self, backup_path):
         """ this method will create the path to the dump,
