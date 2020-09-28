@@ -10,11 +10,11 @@
   - Possibility to restore at the desirated date 
   - create Cron 
 
-## install python3 : 
+## install packet : 
 
-apt-get update
-apt-get upgrade -y
-apt-get install python3 python-pip3 git-all -y
+- apt-get update
+- apt-get upgrade -y
+- apt-get install python3 python3-pip git-all -y
 
 ## clone project : 
 
