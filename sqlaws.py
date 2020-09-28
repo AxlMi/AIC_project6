@@ -22,6 +22,7 @@ def create_folder(bucket_name, path):
 def import_dump():
     """ send the dump on the corresponding structure"""
     for db in var.db_name:
+        """ create the path corresponding on s3"""
         path_host = var.path_dump + "/" + db + '/' + db+var.today_date + '.sql' + '.gz'
         path_s3 = 'backup' + '/' + socket.gethostname() + '/' + db + '/' + db+var.today_date + '.sql' + '.gz' # path to save on s3
         s3.upload_file(path_host, var.bucket_name, path_s3)
@@ -31,6 +32,7 @@ def export_dump():
     name_server = input("Quel est le nom du serveur sur lequel est la base de donnée ? ")
     name_bdd = input("Quel est le nom de la base de donnée ? ")
     date_ok = False
+    """ we check that the date is consistent before recovering the file"""
     while not date_ok:
         try:
             year_bdd = int(input("A quelle annee souhaitez vous faire la restauration ? "))
@@ -60,14 +62,15 @@ def export_dump():
         day_bdd = str(day_bdd)
 
     year_bdd = str(year_bdd)
-    
+    """ we restore the name corresponding"""
     name_restore = name_bdd+year_bdd+month_bdd+day_bdd+".sql.gz"
     path = "backup/"+name_server+"/"+name_bdd+"/"+name_restore
-    print(name_restore)
-    print(path)
     try:
+      """ download of the file according to the name and dates previously filled"""
         s3.download_file("projet6backup", path, name_restore)
+      """ unzip our download"""
         os.system("gzip -d "+name_restore)
+      """ decrypt the file"""
         secure.decrypt(name_bdd+year_bdd+month_bdd+day_bdd+".sql", confidential.key_encryption)
     except Exception as e:
         print(e, "êtes vous sur que le fichier existe ?")
