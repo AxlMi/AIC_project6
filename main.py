@@ -9,7 +9,7 @@ import time
 import create_crontab
 import send_mail
 
-"""if all goes well, I will send an email to indicate the correct execution of the script"""
+# if all goes well, I will send an email to indicate the correct execution of the script
 try:
     # instantiate DB
     dbase = sqlsave.Database(confidential.sql_user, confidential.sql_password)
@@ -25,7 +25,7 @@ try:
         send_mail.send_ok()
     except Exception as err:
         print(err)
-""" if I encounter an error, I send an email indicating the error encountered"""
+# if I encounter an error, I send an email indicating the error encountered
 except Exception as exc:
     send_mail.send_err(exc)
     print("une erreur", exc)
