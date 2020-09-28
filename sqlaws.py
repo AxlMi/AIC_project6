@@ -66,11 +66,11 @@ def export_dump():
     name_restore = name_bdd+year_bdd+month_bdd+day_bdd+".sql.gz"
     path = "backup/"+name_server+"/"+name_bdd+"/"+name_restore
     try:
-      """ download of the file according to the name and dates previously filled"""
+      # download of the file according to the name and dates previously filled
         s3.download_file("projet6backup", path, name_restore)
-      """ unzip our download"""
+      # unzip our download
         os.system("gzip -d "+name_restore)
-      """ decrypt the file"""
+      # decrypt the file
         secure.decrypt(name_bdd+year_bdd+month_bdd+day_bdd+".sql", confidential.key_encryption)
     except Exception as e:
         print(e, "êtes vous sur que le fichier existe ?")
