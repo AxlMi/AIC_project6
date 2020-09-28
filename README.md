@@ -2,7 +2,8 @@
 
 ## The purpose of this project is : 
 
-  - Create a Dump of your database MYSQL and Zip
+  - Create a Dump of your database MYSQL or MariaDB
+  - Zip your Dump
   - Save him on S3 bucket, all day in new folder with the corresponding date
   - Encrypt DATA with algorithm AES 
   - send mail to indicate the state of the script
@@ -27,15 +28,22 @@ active your virtual environment : source "name of yoour virtual environement"/bi
 
 ## install the necessary modules :
 
-you need to install, use : pip install -r requirements.txt
+you need to install, use : pip3 install -r requirements.txt
 
  ## Prerequisite :
+ 
+ ## Create an User for ur DB :
+ 
+ - mysql -u root -p"password"
+ - CREATE USER 'USERNAME'@'localhost' IDENTIFIED BY 'PASSWORD';
+ - GRANT ALL PRIVILEGES ON * . * TO 'USERNAME'@'localhost';
+ - FLUSH PRIVILEGES
  
  ### - Create/modify file confidential.py with this variable : 
 
  - aws_key = " enter ur AWS KEY, you can found him in your AWS Account"
  - aws_secret = " enter ur key secret , you can found him in your AWS Account"
- - sql_user = "enter ur account for use SQL"
+ - sql_user = "enter ur account created previously for use SQL"
  - sql_password = "enter ur password"
  - smtp_server = " indicate your smtp server"
  - smtp_port = "port of your smtp server"
