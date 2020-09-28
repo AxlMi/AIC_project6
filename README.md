@@ -30,7 +30,7 @@ Use git clone https://github.com/AxlMi/AIC_project6
 
 you need to install, use : pip3 install -r requirements.txt
 
- ## Prerequisite :
+# Prerequisite :
  
  ## Create an User for ur DB :
  
