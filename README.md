@@ -64,7 +64,7 @@ for generate the key you can use python3 secure.py , this will create a file nam
 
 ## starting the script :
 
-Now you can launch this script with : python3 main.py
+Now you can launch this script with : sudo python3 main.py
 
 this script will save all DB on your S3 bucket_name with this structruce : 
 
